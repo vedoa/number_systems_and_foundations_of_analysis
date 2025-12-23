@@ -3424,7 +3424,68 @@ Suppose $\mathcal{L}$ is a first-order language, $\mathcal{L'}$ is an extension 
 
 ::: {.proof}
 
+By @prp-formula-extension-l because $\Gamma$ is a set of formulas of $\mathcal{L}$ then $\Gamma$ is also a set of formulas of $\mathcal{L'}$
 
+First, assume $\mathfrak{M}$ is a structure of $\mathcal{L}$ such that $\mathfrak{M}$ satisfies $\Gamma$ then $\mathfrak{M} \models \Gamma$. Therefore $\mathfrak{M} \models \gamma$ for every formula $\gamma \in \Gamma$. That is, $\mathfrak{M} \models \gamma[s]$ for every assignment $s: V \longrightarrow |\mathfrak{M}|$ for $\mathfrak{M}$ where $V = \{ v_0, v_1, \ldots, \}$ be the set of all variable symbols of $\mathcal{L}$ according to @def-assignment. By @def-symbols-l are also logical symbols of $\mathcal{L'}$.
+
+We need to find a structure $\mathfrak{M'}$ of $\mathcal{L'}$ such that $\mathfrak{M'} \models \Gamma$. So let:
+
+(1) $|\mathfrak{M}| = |\mathfrak{M'}|$. That is, the universe of $\mathfrak{M}$ for $\mathcal{L}$ is the same universe of $\mathfrak{M'}$ for $\mathcal{L'}$
+
+(2) We can have new constants such that if $c'$ in $\mathcal{L'}$ then ${c'}^{\mathfrak{M}'}$ belongs to $|\mathfrak{M}|$. So the set of constants in $\mathcal{L}$ is a subset of the set of constants of $\mathcal{L'}$.
+
+(3) We can have new $k$-place functions symbols $f'$ of $\mathcal{L'}$ such that ${f'}^{\mathfrak{M}'}: {|\mathfrak{M}|}^k \longrightarrow |\mathfrak{M}|$. So the set of $k$-place functions in $\mathcal{L}$ is a subset of the set of $k$-place functions of $\mathcal{L'}$.
+
+(4) We can have new $k$-place relation symbols $P'$ of $\mathcal{L'}$ such that ${P'}^{\mathfrak{M}'} \subseteq {|\mathfrak{M}|}^k$
+
+Also we can define $s' = s$ for $\mathfrak{M}' \models \gamma[s']$ where $\gamma \in \Gamma$ as $s: V \longrightarrow |\mathfrak{M}|$ where $s$ is well defined because $\gamma \in \Gamma$ doesn't include new non-logical symbols from the structure $\mathfrak{M}'$ in relation to $\mathfrak{M}$. Furthermore for @def-extent-assignment we can specify the extended assignment as $\mathbf{s'}: T' \longrightarrow |\mathfrak{M}|$ where we don't need to worry about the additional terms becasue $T \subseteq T'$ and $\Gamma$ doesn't contain new terms that are not in $T$. Therefore $\mathfrak{M}' \models \Gamma$ because $\mathfrak{M}' \models \gamma[s']$ for all $\gamma \in \Gamma$.
+
+Second, assume $\mathfrak{M'}$ is a structure of $\mathcal{L'}$ such that $\mathfrak{M'}$ satisfies $\Gamma$ then $\mathfrak{M'} \models \Gamma$. Therefore $\mathfrak{M'} \models \gamma$ for every formula $\gamma \in \Gamma$. That is, $\mathfrak{M'} \models \gamma[s']$ for every assignment $s': V \longrightarrow |\mathfrak{M'}|$ for $\mathfrak{M'}$ where $V = \{ v_0, v_1, \ldots, \}$ be the set of all variable symbols of $\mathcal{L'}$ according to @def-assignment. By @def-symbols-l are also logical symbols of $\mathcal{L}$.
+
+In a similar way as in the first part We need to find a structure $\mathfrak{M}$ of $\mathcal{L}$ such that $\mathfrak{M} \models \Gamma$. So let:
+
+(1) $|\mathfrak{M'}| = |\mathfrak{M}|$. That is, the universe of $\mathfrak{M'}$ for $\mathcal{L'}$ is the same universe of $\mathfrak{M}$ for $\mathcal{L}$
+
+(2) We don't have new constants because if $c$ in $\mathcal{L}$ then ${c}^{\mathfrak{M}'}$ belongs to $|\mathfrak{M'}|$. So set of constants in $\mathcal{L}$ is a subset of the set of constants of $\mathcal{L'}$.
+
+(3) We don't have new $k$-place functions symbols because if $f$ are part of the structure of $\mathcal{L}$ then ${f}^{\mathfrak{M}'}: {|\mathfrak{M'}|}^k \longrightarrow |\mathfrak{M}'|$. So the set of $k$-place functions in $\mathcal{L}$ is a subset of the set of $k$-place functions of $\mathcal{L'}$.
+
+(4) We don't have new $k$-place relation symbols because if $P$ are part of the structure of $\mathcal{L}$ then ${P}^{\mathfrak{M}'} \subseteq {|\mathfrak{M'}|}^k$.
+
+Also we can define $s = s'$ for $\mathfrak{M} \models \gamma[s]$ where $\gamma \in \Gamma$ as $s: V \longrightarrow |\mathfrak{M'}|$ where $s$ is well defined because $\gamma \in \Gamma$ doesn't include new non-logical symbols from the structure $\mathfrak{M}'$ in relation to $\mathfrak{M}$. Furthermore for @def-extent-assignment we can restric the extended assignment as $\mathbf{s} = \mathbf{s' \mid}_{T}$ such that $\mathbf{s' \mid}_{T}: T \longrightarrow |\mathfrak{M'}|$ because $T \subseteq T'$. Therefore $\mathfrak{M} \models \Gamma$ because $\mathfrak{M} \models \gamma[s]$ for all $\gamma \in \Gamma$.
+
+:::
+
+::: {#def-theory-structure}
+
+If $\mathfrak{M}$ is a structure for $\mathcal{L}$, then the theory of $\mathfrak{M}$ is just the set of all sentences of $\mathcal{L}$ true in $\mathfrak{M}$, i.e.
+
+$$Th(\mathfrak{M}) = \{ \tau \mid \tau \text{ is a sentence and } \mathfrak{M} \models \tau \}$$
+
+If $\Delta$ is a set of sentences and $\mathcal{S}$ is a collection of structures, then $\Delta$ is a set of (non-logical) axioms for $\mathcal{S}$ if for every structure $\mathfrak{M}$, $\mathfrak{M} \in \mathcal{S}$ if and only if $\mathfrak{M} \models \Delta$.
+
+:::
+
+::: {#exm-theory-structure}
+
+Consider the sentence $\exists x \exists y ((\neg x = y) \land \forall z (z = x ∨ z = y))$ of $\mathcal{L}_{=}$. Every structure of $\mathcal{L}_{=}$ satisfying this sentence must have exactly two elements in its universe, so $\{ \exists x \exists y ((\neg x = y) \land \forall z (z = x \lor z = y)) \}$ is a set of non-logical axioms for the collection of sets of cardinality $2$:
+
+$$\{ \mathfrak{M} \mid \mathfrak{M} \text{ is a structure for } \mathcal{L}_{=} \text{ with exactly 2 elements } \}$$
+
+:::
+
+::: {#exr-theory-structure}
+
+In each case, find a suitable language and a set of axioms in it for the given collection of structures.
+
+(1) Sets of size $3$.
+(2) Bipartite graphs.
+(3) Commutative groups.
+(4) Fields of characteristic $5$.
+
+:::
+
+::: {#sol-theory-structure}
 
 :::
 
